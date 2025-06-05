@@ -23,6 +23,10 @@ Welcome to your new app.
         </li>
     }
 </ul>
+<form>
+    <label for="enumber">Employee Number:</label>
+    <input type="number" id="enumber">
+</form>
 <button class="button btn-primary" @onclick="AddEntry">Add Entry</button>
 @code {
     
@@ -34,16 +38,17 @@ Welcome to your new app.
         entries = await Db.TimesheetEntries.ToListAsync();
     }
     // Function for adding entries
+        private int eNumber = 0;
         private async Task AddEntry()
     {
-        var entry = new TimesheetEntry
+        var newEntry = new TimesheetEntry
         {
-            Employee = 105, 
+            Employee = eNumber, 
             Today = new DateOnly(2025,6,5), 
             Hours = 8, 
             Job = 57
         };
-        Db.TimesheetEntries.Add(entry);
+        Db.TimesheetEntries.Add(newEntry);
         await Db.SaveChangesAsync();
         entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
     }

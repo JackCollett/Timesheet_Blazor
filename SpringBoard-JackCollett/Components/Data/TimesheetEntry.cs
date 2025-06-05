@@ -2,6 +2,7 @@ namespace TimesheetNameSpace
 {
     public class TimesheetEntry
     {
+        
         public int Id { get; set; }
         public int Employee { get; set; }
         public DateOnly Today { get; set; }
