@@ -1,0 +1,54 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using static Components.Pages.Counter
+
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<Counter IncrementAmount="10" />
+
+<br><br/>
+
+<h3> new Entry: </h3>
+<button @onclick="AddEntry">add entry</button>
+
+<br><br/>
+
+<ul>
+    @foreach (var entry in Entries)
+    {
+        <li>
+            Date: @entry.Today, Hours: @entry.Hours, Job: @entry.Job
+        </li>
+    }
+</ul>
+
+<br><br/>
+
+<h5>Example Entry Display</h5>
+<p>Date: @entry1.Today</p>
+<p>Hours: @entry1.Hours</p>
+<p>job: @entry1.Job</p>
+
+<p>Date: @entry2.Today</p>
+<p>Hours: @entry2.Hours</p>
+<p>job: @entry2.Job</p>
+
+@code {
+    
+    private TimesheetEntry entry1 = new TimesheetEntry(new DateOnly(2025,6,3), 8, 58);
+    private TimesheetEntry entry2 = new TimesheetEntry(new DateOnly(2025,6,3), 5, 62);
+
+    private List<TimesheetEntry> Entries = new()
+        {
+            new TimesheetEntry(new DateOnly(2025,6,3), 9, 44)
+        };
+    private void AddEntry() {
+        Entries.Add(new TimesheetEntry(new DateOnly(2025,6,3), 8, 58));
+        StateHasChanged();
+    }
+}

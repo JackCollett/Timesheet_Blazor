@@ -1,0 +1,16 @@
+@page "/test"
+
+
+<h3>New Entry:</h3>
+<button @onclick="AddEntry">Add Entry</button>
+
+<p>@message</p>
+
+@code {
+    private string message = "Hi";
+
+    private void AddEntry()
+    {
+        message = "Hello";
+    }
+}
