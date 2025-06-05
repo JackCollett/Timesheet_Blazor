@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpringBoard-JackCollett")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b13a250d27d172c6c1d6f04fda6bba45ed0c07c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65d2505be6d25f5f8ccd9123bc4b2a80c64bb633")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpringBoard-JackCollett")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpringBoard-JackCollett")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

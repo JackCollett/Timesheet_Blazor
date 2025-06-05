@@ -14,61 +14,34 @@ Welcome to your new app.
 
 <br><br/>
 
-<h3> new Entry: </h3>
-<button @onclick="AddEntry">add entry</button>
-
-<br><br/>
-
+<h1>DataBase:</h1>
 <ul>
-    @foreach (var entry in Entries)
+    @foreach (var entry in entries)
     {
         <li>
-            Date: @entry.Today, Hours: @entry.Hours, Job: @entry.Job
+            Employee: @entry.Employee, Date: @entry.Today, Hours: @entry.Hours, Job: @entry.Job
         </li>
     }
 </ul>
-
-<br><br/>
-
-<h5>Example Entry Display</h5>
-<p>Date: @entry1.Today</p>
-<p>Hours: @entry1.Hours</p>
-<p>job: @entry1.Job</p>
-
-<p>Date: @entry2.Today</p>
-<p>Hours: @entry2.Hours</p>
-<p>job: @entry2.Job</p>
-
+<button class="button btn-primary" @onclick="AddEntry">Add Entry</button>
 @code {
     
-    private TimesheetEntry entry1 = new TimesheetEntry(101, new DateOnly(2025,6,3), 8, 58);
-    private TimesheetEntry entry2 = new TimesheetEntry(102, new DateOnly(2025,6,3), 5, 62);
-
-    private List<TimesheetEntry> Entries = new()
-        {
-            new TimesheetEntry(100, new DateOnly(2025,6,3), 9, 44)
-        };
-    private void AddEntry() {
-        Entries.Add(new TimesheetEntry(103, new DateOnly(2025,6,3), 8, 58));
-        StateHasChanged();
-    }
-
-    
+    // List of entries 
     private List<TimesheetEntry> entries = new();
 
     protected override async Task OnInitializedAsync()
     {
         entries = await Db.TimesheetEntries.ToListAsync();
     }
-
-        private async Task AddEntryAsync()
+    // Function for adding entries
+        private async Task AddEntry()
     {
         var entry = new TimesheetEntry
         {
-            Employee = 103, 
-            Today = new DateOnly(2025,6,3), 
+            Employee = 105, 
+            Today = new DateOnly(2025,6,5), 
             Hours = 8, 
-            Job = 58
+            Job = 57
         };
         Db.TimesheetEntries.Add(entry);
         await Db.SaveChangesAsync();
