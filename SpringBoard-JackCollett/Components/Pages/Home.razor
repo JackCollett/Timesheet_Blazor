@@ -1,7 +1,8 @@
 ﻿@page "/"
+@using Microsoft.EntityFrameworkCore
 @rendermode InteractiveServer
 @using static Components.Pages.Counter
-
+@inject AppDbContext Db
 
 <PageTitle>Home</PageTitle>
 
@@ -40,15 +41,39 @@ Welcome to your new app.
 
 @code {
     
-    private TimesheetEntry entry1 = new TimesheetEntry(1, 101, new DateOnly(2025,6,3), 8, 58);
-    private TimesheetEntry entry2 = new TimesheetEntry(2, 102, new DateOnly(2025,6,3), 5, 62);
+    private TimesheetEntry entry1 = new TimesheetEntry(101, new DateOnly(2025,6,3), 8, 58);
+    private TimesheetEntry entry2 = new TimesheetEntry(102, new DateOnly(2025,6,3), 5, 62);
 
     private List<TimesheetEntry> Entries = new()
         {
-            new TimesheetEntry(0, 100, new DateOnly(2025,6,3), 9, 44)
+            new TimesheetEntry(100, new DateOnly(2025,6,3), 9, 44)
         };
     private void AddEntry() {
-        Entries.Add(new TimesheetEntry(3, 103, new DateOnly(2025,6,3), 8, 58));
+        Entries.Add(new TimesheetEntry(103, new DateOnly(2025,6,3), 8, 58));
         StateHasChanged();
     }
-}
+
+    
+    private List<TimesheetEntry> entries = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        entries = await Db.TimesheetEntries.ToListAsync();
+    }
+
+        private async Task AddEntryAsync()
+    {
+        var entry = new TimesheetEntry
+        {
+            Employee = 103, 
+            Today = new DateOnly(2025,6,3), 
+            Hours = 8, 
+            Job = 58
+        };
+        Db.TimesheetEntries.Add(entry);
+        await Db.SaveChangesAsync();
+        entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
+    }
+
+}using Microsoft.EntityFrameworkCore;
+#line default

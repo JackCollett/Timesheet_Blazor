@@ -1,15 +1,23 @@
-
-
 namespace TimesheetNameSpace
 {
-    public class TimesheetEntry(int Id, int employee, DateOnly date, int hours, int job_number)
+    public class TimesheetEntry
     {
-        public int id { get; set; } = Id;
+        public int Id { get; set; }
+        public int Employee { get; set; }
+        public DateOnly Today { get; set; }
+        public int Hours { get; set; }
+        public int Job { get; set; }
 
-        public int Employee { get; set; } = employee;
-        public DateOnly Today { get; set; } = date;
-        public int Hours { get; set; } = hours;
-        public int Job { get; set; } = job_number;
+        // Parameterless constructor (required by EF Core)
+        public TimesheetEntry() { }
 
+        // Optional convenience constructor
+        public TimesheetEntry(int employee, DateOnly date, int hours, int jobNumber)
+        {
+            Employee = employee;
+            Today = date;
+            Hours = hours;
+            Job = jobNumber;
+        }
     }
 }
