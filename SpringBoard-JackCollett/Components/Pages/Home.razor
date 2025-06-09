@@ -51,6 +51,13 @@ Welcome to your new app.
 
         private async Task AddEntry()
     {
+        if (eNumber > 300 || eNumber < 1)
+            {
+            Console.WriteLine("Please check your employee number");
+            return;
+            }
+        else
+        {
         var newEntry = new TimesheetEntry
         {
             Employee = eNumber, 
@@ -61,6 +68,7 @@ Welcome to your new app.
         Db.TimesheetEntries.Add(newEntry);
         await Db.SaveChangesAsync();
         entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
+        }
     }
 
 }
