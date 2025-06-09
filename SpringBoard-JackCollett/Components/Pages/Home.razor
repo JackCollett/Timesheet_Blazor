@@ -15,8 +15,15 @@ Welcome to your new app.
 <br><br/>
 
 <h1>DataBase:</h1>
+<select @bind="selectedEmployee" class="form-select">
+    <option value="">--All Employees--</option>
+    @for (int emp = 1; emp <= 300; emp++)
+    {
+        <option value="@emp">@emp</option>
+    }
+</select>
 <ul>
-    @foreach (var entry in entries)
+    @foreach (var entry in FilterEntries)
     {
         <li>
             Employee: @entry.Employee, Date: @entry.Today, Hours: @entry.Hours, Job: @entry.Job
@@ -34,30 +41,38 @@ Welcome to your new app.
     <input type="number" id="h" @bind="hours">
 </form>
 <button class="button btn-primary" @onclick="AddEntry">Add Entry</button>
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
 @code {
     
     // List of entries 
     private List<TimesheetEntry> entries = new();
+    private int? selectedEmployee = null;
+
+    private IEnumerable<TimesheetEntry> FilterEntries => selectedEmployee is null
+        ? entries
+        : entries.Where(e => e.Employee == selectedEmployee);
 
     protected override async Task OnInitializedAsync()
     {
         entries = await Db.TimesheetEntries.ToListAsync();
     }
+
+    // Selected Employee
+
+ 
     // Function for adding entries
         private int eNumber = 0;
         private DateOnly date = DateOnly.FromDateTime(DateTime.Now);
         private int job = 0;
         private int hours = 0;
 
+        private string? errorMessage;
+
         private async Task AddEntry()
     {
-        if (eNumber > 300 || eNumber < 1)
-            {
-            Console.WriteLine("Please check your employee number");
-            return;
-            }
-        else
-        {
         var newEntry = new TimesheetEntry
         {
             Employee = eNumber, 
@@ -65,9 +80,32 @@ Welcome to your new app.
             Hours = hours, 
             Job = job
         };
-        Db.TimesheetEntries.Add(newEntry);
-        await Db.SaveChangesAsync();
-        entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
+        if (newEntry.Today > DateOnly.FromDateTime(DateTime.Today))
+        {
+            errorMessage = "Please only select a present or past date";
+            return;
+        }
+        if (newEntry.Employee < 1 || newEntry.Employee > 300) 
+        {
+            errorMessage = "Please enter your employee number (1-300)";
+            return;
+        }
+        if (newEntry.Hours < 1 || newEntry.Hours > 8) 
+        {
+            errorMessage = "Please enter the number of hours (0-8)";
+            return;
+        }
+        if (newEntry.Job < 1 || newEntry.Job > 999) 
+        {
+            errorMessage = "Please enter the valid job number (1-999)";
+            return;
+        }
+        else
+        {
+            errorMessage = string.Empty;
+            Db.TimesheetEntries.Add(newEntry);
+            await Db.SaveChangesAsync();
+            entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
         }
     }
 
