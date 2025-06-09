@@ -25,7 +25,13 @@ Welcome to your new app.
 </ul>
 <form>
     <label for="enumber">Employee Number:</label>
-    <input type="number" id="enumber">
+    <input type="number" id="enumber" @bind="eNumber">
+    <label for="date">Date:</label>
+    <input type="date" id="date" @bind="date">
+    <label for="j">Job Number:</label>
+    <input type="number" id="j" @bind="job">
+    <label for="h">Hours:</label>
+    <input type="number" id="h" @bind="hours">
 </form>
 <button class="button btn-primary" @onclick="AddEntry">Add Entry</button>
 @code {
@@ -39,19 +45,22 @@ Welcome to your new app.
     }
     // Function for adding entries
         private int eNumber = 0;
+        private DateOnly date = DateOnly.FromDateTime(DateTime.Now);
+        private int job = 0;
+        private int hours = 0;
+
         private async Task AddEntry()
     {
         var newEntry = new TimesheetEntry
         {
             Employee = eNumber, 
-            Today = new DateOnly(2025,6,5), 
-            Hours = 8, 
-            Job = 57
+            Today = date, 
+            Hours = hours, 
+            Job = job
         };
         Db.TimesheetEntries.Add(newEntry);
         await Db.SaveChangesAsync();
         entries = await Db.TimesheetEntries.ToListAsync(); // Refresh
     }
 
-}using Microsoft.EntityFrameworkCore;
-#line default
+}

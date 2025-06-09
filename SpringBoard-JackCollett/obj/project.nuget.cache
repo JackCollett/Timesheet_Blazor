@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QnUuRLi0drs=",
+  "dgSpecHash": "ogzBkjaC6yI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
+  "projectFilePath": "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jackc.DESKTOP-A86UGNF\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\jackc.DESKTOP-A86UGNF\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

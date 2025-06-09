@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj": {}
+    "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj": {
+    "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
+        "projectUniqueName": "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
         "projectName": "SpringBoard-JackCollett",
-        "projectPath": "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
+        "projectPath": "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\SpringBoard-JackCollett.csproj",
         "packagesPath": "C:\\Users\\jackc.DESKTOP-A86UGNF\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\obj\\",
+        "outputPath": "c:\\Users\\jackc.DESKTOP-A86UGNF\\Documents\\Projects\\SpringBoard-JackCollett\\SpringBoard-JackCollett\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jackc.DESKTOP-A86UGNF\\AppData\\Roaming\\NuGet\\NuGet.Config"
