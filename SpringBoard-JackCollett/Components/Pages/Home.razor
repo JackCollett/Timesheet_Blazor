@@ -6,15 +6,12 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<Counter IncrementAmount="10" />
+<h1>Hello, Employee!</h1>
 
 <br><br/>
 
-<h1>DataBase:</h1>
+<h1>Entries:</h1>
+@* Drop Down for seaching by Employee Number *@
 <select @bind="selectedEmployee" class="form-select">
     <option value="">--All Employees--</option>
     @for (int emp = 1; emp <= 300; emp++)
@@ -22,6 +19,7 @@ Welcome to your new app.
         <option value="@emp">@emp</option>
     }
 </select>
+@* List to Display entries *@
 <ul>
     @foreach (var entry in FilterEntries)
     {
@@ -30,6 +28,7 @@ Welcome to your new app.
         </li>
     }
 </ul>
+@* Form for new Entry *@
 <form>
     <label for="enumber">Employee Number:</label>
     <input type="number" id="enumber" @bind="eNumber">
@@ -40,6 +39,7 @@ Welcome to your new app.
     <label for="h">Hours:</label>
     <input type="number" id="h" @bind="hours">
 </form>
+@* Add Entry Button *@
 <button class="button btn-primary" @onclick="AddEntry">Add Entry</button>
 @if (!string.IsNullOrWhiteSpace(errorMessage))
 {
@@ -48,19 +48,31 @@ Welcome to your new app.
 @code {
     
     // List of entries 
-    private List<TimesheetEntry> entries = new();
+    // Property with getter to handle search entries by Employee
     private int? selectedEmployee = null;
 
     private IEnumerable<TimesheetEntry> FilterEntries => selectedEmployee is null
         ? entries
         : entries.Where(e => e.Employee == selectedEmployee);
 
+    //  Equivalent if-else statement 
+    @* IEnumerable<TimesheetEntry> FilteredEntries;
+
+    if (selectedEmployee is null)
+    {
+        FilteredEntries = entries;
+    }
+    else
+    {
+        FilteredEntries = entries.Where(e => e.Employee == selectedEmployee);
+    } *@
+
+    // List all Entries
+    private List<TimesheetEntry> entries = new();
     protected override async Task OnInitializedAsync()
     {
         entries = await Db.TimesheetEntries.ToListAsync();
     }
-
-    // Selected Employee
 
  
     // Function for adding entries
