@@ -26,3 +26,17 @@ Make sure you have installed:
 - EF Core CLI tools:
   ```bash
   dotnet tool install --global dotnet-ef
+
+Setup: 
+
+git clone https://github.com/JackCollett/Timesheet_Blazor.git
+
+cd Timesheet_Blazor
+
+dotnet restore
+
+dotnet ef database update
+
+dontnet run
+
+https://Localhost:5001
