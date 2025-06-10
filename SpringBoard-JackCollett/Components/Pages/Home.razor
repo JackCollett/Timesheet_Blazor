@@ -20,14 +20,31 @@
     }
 </select>
 @* List to Display entries *@
-<ul>
+    <table style="width:100%">
+        <tr>
+            <th>Employee Number</th>
+            <th>Date</th>
+            <th>Hours</th>
+            <th>Job Number</th>
+        </tr>
+        @foreach (var entry in FilterEntries) 
+        {
+            <tr>
+                <td>@entry.Employee</td>
+                <td>@entry.Today</td>
+                <td>@entry.Hours</td>
+                <td>@entry.Job</td>
+            </tr>
+        }
+    </table>
+@* <ul>
     @foreach (var entry in FilterEntries)
     {
         <li>
             Employee: @entry.Employee, Date: @entry.Today, Hours: @entry.Hours, Job: @entry.Job
         </li>
     }
-</ul>
+</ul> *@
 @* Form for new Entry *@
 <form>
     <label for="enumber">Employee Number:</label>

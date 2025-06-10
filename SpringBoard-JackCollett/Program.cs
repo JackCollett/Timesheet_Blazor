@@ -44,7 +44,7 @@ public static class DbInitializer
 {
     public static void Seed(AppDbContext context)
     {
-        
+
         if (!context.TimesheetEntries.Any())
         {
             context.TimesheetEntries.AddRange(
